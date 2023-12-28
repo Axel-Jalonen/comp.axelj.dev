@@ -69,12 +69,22 @@
 
 #options-container-right {
     width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     padding: 0px 50px 0px;
+}
+#options-container-right-bottom {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+#options-container-right-bottom a{
+    margin-right: 5px;
 }
 #github-logo-svg {
     width: 20px;
     height: 20px;
-    margin-bottom: calc(-20px/5);
 }
 #output-container {
     word-break: keep-all;
