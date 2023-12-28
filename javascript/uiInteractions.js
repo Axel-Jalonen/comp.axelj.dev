@@ -3,6 +3,7 @@ let aboutContainerBackground = document.getElementById('about-container-backgrou
 
 document.addEventListener('keydown', handleEscapeKeyPress);
 aboutContainerBackground.addEventListener('click', toggleAbout);
+
 function handleEscapeKeyPress(event) {
     if (event.key === "Escape" && aboutContainer.style.display !== "none") {
         toggleAbout();

@@ -4,13 +4,11 @@
     height: 100vh;
     background: transparent;
     backdrop-filter: blur(2px);
-    display: none;
     z-index: 1;
 }
 
 #about-container {
     background: white;
-    display: none;
     border: 1.5px solid slategrey;
     padding: 20px;
     border-radius: 15px;

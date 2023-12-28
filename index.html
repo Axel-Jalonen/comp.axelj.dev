@@ -12,15 +12,15 @@
 </head>
 
 <body>
-    <div id="about-container-background">
+    <div id="about-container-background" style="display:none;">
     </div>
-    <div id="about-container">
+    <div id="about-container" style="display:none;">
         <p>hComp offers variable compression that aims to be human readable. Unlike other human readable compression
             algorithms that aim to reduce reading strain without a focus on file size reduction, hComp aims to provide
             the maximum amount of file size compression (Less Bytes = better), while still remaining readable. You can
             modulate the parameters to achieve more readability or more compression. In the output box you can view the
             character reduction as well as the new word & character count. If you'd like to know how our algorithm works
-            please <a href="./read-more.html">read more</a></p>
+            please <a href="./pages/read-more.html">read more</a></p>
         <button onclick="toggleAbout()">Close</button>
     </div>
     <div id="input-container">
@@ -39,10 +39,10 @@
                 </div>
             </div>
             <div id="options-container-right">
-                <button href="#" onclick="toggleAbout()">About</button>
+                <button onclick="toggleAbout()">About</button>
                 <br/>
-                <a href="github/???">Source Code</a>
-                <img id="github-logo-svg" src="./public/github-mark.svg"></img>
+                <a href="https://github.com/MostLeVert/hComp">Source Code</a>
+                <img id="github-logo-svg" src="./assets/github-mark.svg"></img>
             </div>
         </div>
     </div>
