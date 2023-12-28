@@ -1,31 +1,51 @@
-document.getElementById('occurrence').addEventListener('input', function () {
-    document.getElementById('occurrence-value').innerHTML = document.getElementById('occurrence').value;
+const textareaInput = document.getElementById('textarea-input');
+const occurrenceInput = document.getElementById('occurrence');
+const occurrenceSpan = document.getElementById('occurrence-value');
+const wordLengthInput = document.getElementById('length');
+const wordLengthSpan = document.getElementById('length-value');
+const abbreviationLengthInput = document.getElementById('abbreviation-length');
+const abbreviationLengthSpan = document.getElementById('abbreviation-length-value');
+const outputCont = document.getElementById('text-output-container');
+const wordCountOutput = document.getElementById('word-count');
+const charCountOutput = document.getElementById('char-count');
+const relativeChangeOutput = document.getElementById('relative-change');
+
+const inputChangeEvent = new CustomEvent('inputChange');
+
+occurrenceInput.addEventListener('input', () => {
+    occurrenceSpan.innerHTML = occurrenceInput.value;
     runLogic();
-})
-document.getElementById('length').addEventListener('input', function () {
-    document.getElementById('length-value').innerHTML = document.getElementById('length').value;
+});
+function updateWordLengthSpan() {
+    wordLengthSpan.innerHTML = wordLengthInput.value;
     runLogic();
-})
-document.getElementById('textarea-input').addEventListener('input', runLogic);
+}
+wordLengthInput.addEventListener('input', updateWordLengthSpan);
+wordLengthInput.addEventListener('inputChange', updateWordLengthSpan);
+textareaInput.addEventListener('input', runLogic);
+
+abbreviationLengthInput.addEventListener('input', () => {
+    abbreviationLengthSpan.innerHTML = abbreviationLengthInput.value;
+    wordLengthInput.min = parseInt(abbreviationLengthInput.value) + 1;
+    wordLengthInput.dispatchEvent(inputChangeEvent);
+    if (wordLengthInput.value < wordLengthInput.min) {
+        wordLengthInput.value = wordLengthInput.min;
+        wordLengthSpan.innerHTML = wordLengthInput.value;
+    }
+    runLogic();
+});
 
 function runLogic() {
-    outputCont = document.getElementById('text-output-container');
     outputCont.innerHTML = '';
-
-    var input = document.getElementById('textarea-input').value.toLowerCase();
+    var input = textareaInput.value.toLowerCase();
     initialLength = input.length;
-
-    var occurrence = document.getElementById('occurrence').value;
-    var length = document.getElementById('length').value;
-
-    var wordCountOutput = document.getElementById('word-count');
-    var charCountOutput = document.getElementById('char-count');
-    var relativeChangeOutput = document.getElementById('relative-change');
-
-    input = input.replace(/[^-a-zA-Z0-9. ,?]/g, '');
-
+    var occurrence = occurrenceInput.value;
+    var length = wordLengthInput.value;
+    // normalize quotes
+    input = input.replace(/[“”"„“”«»「」『』]/g, '"');
+    // clean input
+    input = input.replace(/[^-a-zA-Z0-9. \n,?";():]/g, '');
     var words = new Set(input.split(' '));
-
     wordsToEdit = new Set();
     abrWords = new Set();
 
