@@ -14,9 +14,9 @@ As someone who cared deeply about online privacy an application dealing with any
 
 First clone the repository, then edit as you wish, it's quite simple.
 
-To edit documentation ReadComp has created a custom [Pandoc](https://pandoc.org/) template, to compile the documentation page using Pandoc run the following commands: 
-_From root directory_
-`cd ./pages`
+To edit documentation ReadComp has created a custom [Pandoc](https://pandoc.org/) template, to compile the documentation page using Pandoc run the following commands:\
+_From root directory_\
+`cd ./pages`\
 `pandoc ../README.md -o read-more.html --template=pandoc-template.html`
 
 ## The Algorithm
