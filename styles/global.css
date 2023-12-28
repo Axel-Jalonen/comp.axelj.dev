@@ -18,11 +18,8 @@ body {
 button {
     background: white;
     outline: none;
-    width: 100%;
-    margin-bottom: 10px;
     border: 1.5px solid slategrey;
     border-radius: 7.5px;
-    margin-top: 20px;
     padding: 10px;
 }
 
