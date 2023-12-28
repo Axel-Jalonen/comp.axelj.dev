@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./styles/global.css">
+    <link rel="stylesheet" type="text/css" href="./styles/home.css">
+    <link rel="stylesheet" type="text/css" href="./styles/infoModal.css">
+    <link rel="stylesheet" type="text/css" href="./styles/mobile.css">
+    <title>hComp</title>
+</head>
+
+<body>
+    <div id="about-container-background">
+    </div>
+    <div id="about-container">
+        <p>hComp offers variable compression that aims to be human readable. Unlike other human readable compression
+            algorithms that aim to reduce reading strain without a focus on file size reduction, hComp aims to provide
+            the maximum amount of file size compression (Less Bytes = better), while still remaining readable. You can
+            modulate the parameters to achieve more readability or more compression. In the output box you can view the
+            character reduction as well as the new word & character count. If you'd like to know how our algorithm works
+            please <a href="./read-more.html">read more</a></p>
+        <button onclick="toggleAbout()">Close</button>
+    </div>
+    <div id="input-container">
+        <textarea name="input" id="textarea-input" cols="30" rows="10" placeholder="Just start typing..."></textarea>
+        <div id="options-container">
+            <div id="options-container-left">
+                <label for="occurrence">Minimum number of occurrences</label>
+                <div class="slider-container">
+                    <input type="range" min="0" max="15" step="1" name="occurrence" id="occurrence" value="4">
+                    <span id="occurrence-value">4</span>
+                </div>
+                <label for="length">Minimum word length</label>
+                <div class="slider-container">
+                    <input type="range" min="0" max="15" step="1" name="length" id="length" value="5">
+                    <span id="length-value">5</span>
+                </div>
+            </div>
+            <div id="options-container-right">
+                <button href="#" onclick="toggleAbout()">About</button>
+                <br/>
+                <a href="github/???">Source Code</a>
+                <img id="github-logo-svg" src="./public/github-mark.svg"></img>
+            </div>
+        </div>
+    </div>
+    <div id="output-container">
+        <div id="text-output-container"></div>
+        <div id="stats-output-container">
+            Word count:
+            <span id="word-count">000</span>
+            Char count:
+            <span id="char-count">000</span>
+            Char reduction:
+            <span id="relative-change">000</span>
+        </div>
+    </div>
+    <svg id="arrow-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" id="mysvg">
+        <path style="fill:#232326"
+            d="m17.5 5.999-.707.707 5.293 5.293H1v1h21.086l-5.294 5.295.707.707L24 12.499l-6.5-6.5z"
+            data-name="Right" />
+    </svg>
+</body>
+<script src="./javascript/uiInteractions.js"></script>
+<script src="./javascript/compression.js"></script>
+
+</html>

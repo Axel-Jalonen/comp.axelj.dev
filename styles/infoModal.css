@@ -1,0 +1,25 @@
+#about-container-background {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    backdrop-filter: blur(2px);
+    display: none;
+    z-index: 1;
+}
+
+#about-container {
+    background: white;
+    display: none;
+    border: 1.5px solid slategrey;
+    padding: 20px;
+    border-radius: 15px;
+    position: absolute;
+    width: 500px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+#about-container > button {
+    margin: 20px 0px 0px 0px;
+}
