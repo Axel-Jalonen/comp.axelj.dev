@@ -8,26 +8,28 @@
     <link rel="stylesheet" type="text/css" href="./styles/home.css">
     <link rel="stylesheet" type="text/css" href="./styles/infoModal.css">
     <link rel="stylesheet" type="text/css" href="./styles/mobile.css">
-    <title>hComp</title>
+    <title>ReadComp</title>
 </head>
 
 <body>
     <div id="about-container-background" style="display:none;">
     </div>
     <div id="about-container" style="display:none;">
-        <p>hComp offers variable compression that aims to be human readable. Unlike other human readable compression
-            algorithms that aim to reduce reading strain without a focus on file size reduction, hComp aims to provide
-            the maximum amount of file size compression (Less Bytes = better), while still remaining readable. You can
+        <p>
+            ReadComp offers variable compression that aims to be human readable. Unlike other human readable compression
+            algorithms that aim to reduce reading strain without a focus on file size reduction, ReadComp aims to provide
+            the maximum amount of file size compression, fewer bytes is desirable, while still remaining readable. You can
             modulate the parameters to achieve more readability or more compression. In the output box you can view the
             character reduction as well as the new word & character count. If you'd like to know how our algorithm works
-            please <a href="./pages/read-more.html">read more</a></p>
+            please <a href="./pages/read-more.html" target="_blank">read more &UpperRightArrow;</a>
+        </p>
         <button onclick="toggleAbout()">Close</button>
     </div>
     <div id="input-container">
         <textarea name="input" id="textarea-input" cols="30" rows="10" placeholder="Just start typing..."></textarea>
         <div id="options-container">
             <div id="options-container-left">
-                <label for="occurrence">Minimum number of occurrences</label>
+                <label for="occurrence">Minimum word occurrence</label>
                 <div class="slider-container">
                     <input type="range" min="0" max="15" step="1" name="occurrence" id="occurrence" value="4">
                     <span id="occurrence-value">4</span>
@@ -41,7 +43,7 @@
             <div id="options-container-right">
                 <button onclick="toggleAbout()">About</button>
                 <br/>
-                <a href="https://github.com/MostLeVert/hComp">Source Code</a>
+                <a href="https://github.com/MostLeVert/ReadComp">Source Code</a>
                 <img id="github-logo-svg" src="./assets/github-mark.svg"></img>
             </div>
         </div>
