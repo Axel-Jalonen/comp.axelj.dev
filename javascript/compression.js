@@ -12,7 +12,7 @@ function runLogic() {
     output_cont = document.getElementById('text-output-container');
     output_cont.innerHTML = '';
 
-    var input = document.getElementById('input').value.toLowerCase();
+    var input = document.getElementById('textarea-input').value.toLowerCase();
     initial_length = input.length;
 
     var occurrence = document.getElementById('occurrence').value;
