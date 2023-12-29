@@ -19,11 +19,11 @@
         <label for="regex-input">Custom regex</label>
         <div class="label-button-container">
             <input type="regex" name="Custom Regex" id="regex-input" placeholder="Ex: /[^-a-z0-9. \n,?&quot;;():]/">
-            <button onclick="resetRegex()"><img src="./assets/reload-icon.svg"></img></button>
-            <button onclick="handleNewRegex()">Submit</button>
+            <button id="reset-regex-button"><img src="./assets/reload-icon.svg"></img></button>
+            <button id="submit-new-regex-button">Submit</button>
         </div>
         <output class="status-message" id="advanced-settings-error">Waiting for submission...</output>
-        <button onclick="resetAllModalContainers(); runLogic()">Close & Run</button>
+        <button id="close-and-run-button">Close & Run</button>
     </div>
     <div class="modal" id="about-container" style="display:none;">
         <p>
@@ -34,7 +34,7 @@
             character reduction as well as the new word & character count. If you'd like to know how our algorithm works
             please <a href="./pages/read-more.html" target="_blank">read more &UpperRightArrow;</a>
         </p>
-        <button onclick="resetAllModalContainers()">Close</button>
+        <button id="about-container-close-button" onclick="resetAllModalContainers()">Close</button>
     </div>
     <div id="input-container">
         <textarea name="input" id="textarea-input" cols="30" rows="10" placeholder="Just start typing..."></textarea>
@@ -58,8 +58,8 @@
                 </div>
             </div>
             <div id="options-container-right">
-                <button onclick="toggleModal(event)" name="about-button">About</button>
-                <button onclick="toggleModal(event)" name="advanced-settings-button">Advanced Settings</button>
+                <button id="about-button">About</button>
+                <button id="advanced-settings-button">Advanced Settings</button>
                 <div id="options-container-right-bottom">
                     <a id="source-code-link" target="_blank" href="https://github.com/MostLeVert/ReadComp">Source Code &UpperRightArrow;</a>
                     <img id="github-logo-svg" src="./assets/github-mark.svg" alt="github logo"></img>
@@ -84,7 +84,5 @@
             data-name="Right" />
     </svg>
 </body>
-<script src="./javascript/uiInteractions.js"></script>
-<script src="./javascript/compression.js"></script>
-
+<script type="module" src="./javascript/index.js"></script>
 </html>
