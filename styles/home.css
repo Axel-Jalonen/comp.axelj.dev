@@ -48,11 +48,6 @@
     height: 20%;
     display: flex;
 }
-
-#options-container * {
-    font-family: monospace;
-}
-
 .slider-container {
     display: flex;
     width: 100%;
@@ -81,6 +76,7 @@
 }
 #options-container-right-bottom a{
     margin-right: 5px;
+    color: black; 
 }
 #github-logo-svg {
     width: 20px;
