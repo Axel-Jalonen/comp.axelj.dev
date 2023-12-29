@@ -1,3 +1,5 @@
+"use strict";
+
 const textareaInput = document.getElementById('textarea-input');
 const occurrenceInput = document.getElementById('occurrence');
 const occurrenceSpan = document.getElementById('occurrence-value');
@@ -9,17 +11,23 @@ const outputCont = document.getElementById('text-output-container');
 const wordCountOutput = document.getElementById('word-count');
 const charCountOutput = document.getElementById('char-count');
 const relativeChangeOutput = document.getElementById('relative-change');
+const regexInput = document.getElementById('regex-input');
+const advancedSettingsError = document.getElementById('advanced-settings-error');
 
 const inputChangeEvent = new CustomEvent('inputChange');
+const originalRegex = /[^-a-z0-9. \n,?";():]/g;
+var userRegex = originalRegex;
 
 occurrenceInput.addEventListener('input', () => {
     occurrenceSpan.innerHTML = occurrenceInput.value;
     runLogic();
 });
+
 function updateWordLengthSpan() {
     wordLengthSpan.innerHTML = wordLengthInput.value;
     runLogic();
 }
+
 wordLengthInput.addEventListener('input', updateWordLengthSpan);
 wordLengthInput.addEventListener('inputChange', updateWordLengthSpan);
 textareaInput.addEventListener('input', runLogic);
@@ -35,19 +43,38 @@ abbreviationLengthInput.addEventListener('input', () => {
     runLogic();
 });
 
+function handleNewRegex() {
+    try {
+        userRegex = new RegExp(regexInput.value, 'g');
+        console.log(userRegex);
+        if (userRegex.test('')) {
+            advancedSettingsError.innerHTML = 'WARNING: Regex matches empty string';
+        } else {
+            advancedSettingsError.innerHTML = 'Regex is valid, ready to run';
+        }
+    } catch (e){
+        console.log(e);
+        advancedSettingsError.innerHTML = e.cause ? e.cause.message : e.message;
+    }
+}
+
+function resetRegex() {
+    userRegex = originalRegex;
+    regexInput.value = '';
+    advancedSettingsError.innerHTML = 'Regex is reset, ready to run';
+}
+
 function runLogic() {
-    outputCont.innerHTML = '';
     var input = textareaInput.value.toLowerCase();
-    initialLength = input.length;
+    var initialLength = input.length;
     var occurrence = occurrenceInput.value;
     var length = wordLengthInput.value;
-    // normalize quotes
-    input = input.replace(/[“”"„“”«»「」『』]/g, '"');
-    // clean input
-    input = input.replace(/[^-a-zA-Z0-9. \n,?";():]/g, '');
     var words = new Set(input.split(' '));
-    wordsToEdit = new Set();
-    abrWords = new Set();
+    let wordsToEdit = new Set();
+    let abrWords = new Set();
+
+    input = input.replace(/[“”"„“”«»「」『』]/g, '"');
+    input = input.replace(userRegex, '');
 
     function createWordCounts(text) {
         const wordCounts = {};
@@ -57,7 +84,7 @@ function runLogic() {
         }
         return wordCounts;
     }
-    wordCounts = createWordCounts(input);
+    const wordCounts = createWordCounts(input);
 
     for (let [word, count] of Object.entries(wordCounts)) {
         if (count >= occurrence && word.length >= length && !words.has(word.slice(0, 3)) && !abrWords.has(word.slice(0, 3))) {

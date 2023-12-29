@@ -1,4 +1,4 @@
-#about-container-background {
+#modal-background {
     position: absolute;
     width: 100vw;
     height: 100vh;
@@ -6,8 +6,7 @@
     backdrop-filter: blur(2px);
     z-index: 1;
 }
-
-#about-container {
+.modal {
     background: white;
     border: 1.5px solid slategrey;
     padding: 20px;
@@ -18,6 +17,26 @@
     transform: translateX(-50%);
     z-index: 2;
 }
+.modal input {
+    padding: 10px;
+    border: 1.5px solid slategrey;
+    border-radius: 10px;
+}
 #about-container > button {
-    margin: 20px 0px 0px 0px;
+    margin-top: 10px;
+}
+.label-button-container {
+    display: flex;
+    margin: 5px 0px 2.5px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.label-button-container > button{
+    padding: 10px;
+    margin-left: 10px;
+}
+.label-button-container img{
+    height: 15px;
+    width: 15px;
 }

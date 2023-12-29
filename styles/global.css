@@ -68,3 +68,20 @@ input[type="range"]::-moz-range-thumb {
     height: 15px;
     width: 5px;
 }
+.warning {
+    background: rgb(255, 68, 68);
+    display: block;
+    color: white;
+    padding: 15px;
+    margin: 0px 0px 10px 0px;
+    border-radius: 10px;
+}
+.warning a {
+    color: white;
+}
+.status-message {
+    display: block;
+    font-size: 12px;
+    font-family: monospace;
+    margin: 0px 0px 10px 0px;
+}
