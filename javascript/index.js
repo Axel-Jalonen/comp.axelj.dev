@@ -11,6 +11,7 @@ function updateWordLengthSpan() {
     ui.wordLengthSpan.innerHTML = ui.wordLengthInput.value;
     logic();
 }
+
 ui.wordLengthInput.addEventListener('input', updateWordLengthSpan);
 ui.wordLengthInput.addEventListener('inputChange', updateWordLengthSpan);
 
