@@ -22,7 +22,7 @@ export default function logic() {
     }
 
     for (let word of wordsToEdit) {
-        input = input.replace(new RegExp(word, 'g'), word.slice(0, 3))
+        input = input.replace(new RegExp(word, 'g'), word.slice(0, abbrevLength))
     }
 
     ui.outputCont.innerHTML = input
