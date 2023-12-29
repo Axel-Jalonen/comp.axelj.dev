@@ -8,16 +8,8 @@ ReadComp originally came from a need for a study sheet in a university course, w
 
 ### Privacy
 
-As someone who cared deeply about online privacy an application dealing with anything written by me must protect the data extremely well. This is the reason that ReadComp runs entirely from the browsers and is build without any web frameworks, only vanilla HTML, CSS & JS. ReadComp doesn't store any text locally, nor does it ever make any network connections outside of the downloading of the page's source files to your browser. This also has the side effect of allowing ReadComp to run entirely offline should your browser have cached the page.
+As someone who cares deeply about online privacy an application dealing with anything written by me must protect the data extremely well. This is the reason that ReadComp runs entirely from the browsers and is build without any web frameworks, only vanilla HTML, CSS & JS. ReadComp doesn't store any text locally, nor does it ever make any network connections outside of the downloading of the page's source files to your browser. This also has the side effect of allowing ReadComp to run entirely offline should your browser have cached the page.
 
-## Working on ReadComp
-
-First clone the repository, then edit as you wish, it's quite simple.
-
-To edit documentation ReadComp has created a custom [Pandoc](https://pandoc.org/) template, to compile the documentation page using Pandoc run the following commands:\
-_From root directory_\
-`cd ./pages`\
-`pandoc ../README.md -o read-more.html --template=pandoc-template.html`
 
 ## The Algorithm
 
@@ -44,3 +36,18 @@ Using the object containing words and their count we will now now check each wor
 ### Step 5 
 
 Now we can go through the text and replace each word in `wordsToEdit` in the text with it's abbreviation.
+
+## Advanced Features
+
+### Custom Regex
+
+In our algorithm, as mentioned in [Step 1](#step-1), we remove any characters we don't think matter to most grammatical cases; however we know this is subjective, and won't fit everyone's use case. And while we strive for the best default possible, it is true that we won't always get it right, and our way of fixing that is letting the user control their settings. That is why we have provided the `Custom Regex` input. Our algorithm is designed to use regex in a way where matching characters etc., are replaced by an empty string `''` basically a null value. The way we do this is to use a negative of what we desire, that is to say we provide a set of characters. Then we check if any character in the set fails to match our given set, removing it should it not. So if you which to _include_ certain characters as allowed, then you must put a selected as follows: `[^a]`, this example would allow only the lower case `a`. By default our algorithm converts your entire document to lower case, we are working on making this an optional feature. If a regex such as `foo` is supplied the regex will match only for occurrences of the exact word `foo` in your document, removing them.
+
+## Working on ReadComp
+
+First clone the repository, then edit as you wish, it's quite simple.
+
+To edit documentation ReadComp has created a custom [Pandoc](https://pandoc.org/) template, to compile the documentation page using Pandoc run the following commands:\
+_From root directory_\
+`cd ./pages`\
+`pandoc ../README.md -o read-more.html --template=pandoc-template.html`

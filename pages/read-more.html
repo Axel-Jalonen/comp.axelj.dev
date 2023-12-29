@@ -21,7 +21,7 @@ has complete control over the compression settings, including the
 frequency of compression, the length of the abbreviation, and the
 requirements of a word to be compressed.</p>
 <h3 id="privacy">Privacy</h3>
-<p>As someone who cared deeply about online privacy an application
+<p>As someone who cares deeply about online privacy an application
 dealing with anything written by me must protect the data extremely
 well. This is the reason that ReadComp runs entirely from the browsers
 and is build without any web frameworks, only vanilla HTML, CSS &amp;
@@ -30,15 +30,6 @@ network connections outside of the downloading of the page’s source
 files to your browser. This also has the side effect of allowing
 ReadComp to run entirely offline should your browser have cached the
 page.</p>
-<h2 id="working-on-readcomp">Working on ReadComp</h2>
-<p>First clone the repository, then edit as you wish, it’s quite
-simple.</p>
-<p>To edit documentation ReadComp has created a custom <a
-href="https://pandoc.org/">Pandoc</a> template, to compile the
-documentation page using Pandoc run the following commands:<br />
-<em>From root directory</em><br />
-<code>cd ./pages</code><br />
-<code>pandoc ../README.md -o read-more.html --template=pandoc-template.html</code></p>
 <h2 id="the-algorithm">The Algorithm</h2>
 <h3 id="overview">Overview</h3>
 <p>Our algorithm analysis the text you submit and applies compression
@@ -71,5 +62,34 @@ it’s abbreviation <code>set</code> so we can easily avoid cases such as
 <code>run</code> as a word is already used in the document.</p>
 <h3 id="step-5">Step 5</h3>
 <p>Now we can go through the text and replace each word in
-<code>wordsToEdit</code> in the text with it’s
-abbreviation.</p></body></html>
+<code>wordsToEdit</code> in the text with it’s abbreviation.</p>
+<h2 id="advanced-features">Advanced Features</h2>
+<h3 id="custom-regex">Custom Regex</h3>
+<p>In our algorithm, as mentioned in <a href="#step-1">Step 1</a>, we
+remove any characters we don’t think matter to most grammatical cases;
+however we know this is subjective, and won’t fit everyone’s use case.
+And while we strive for the best default possible, it is true that we
+won’t always get it right, and our way of fixing that is letting the
+user control their settings. That is why we have provided the
+<code>Custom Regex</code> input. Our algorithm is designed to use regex
+in a way where matching characters etc., are replaced by an empty string
+<code>''</code> basically a null value. The way we do this is to use a
+negative of what we desire, that is to say we provide a set of
+characters. Then we check if any character in the set fails to match our
+given set, removing it should it not. So if you which to
+<em>include</em> certain characters as allowed, then you must put a
+selected as follows: <code>[^a]</code>, this example would allow only
+the lower case <code>a</code>. By default our algorithm converts your
+entire document to lower case, we are working on making this an optional
+feature. If a regex such as <code>foo</code> is supplied the regex will
+match only for occurrences of the exact word <code>foo</code> in your
+document, removing them.</p>
+<h2 id="working-on-readcomp">Working on ReadComp</h2>
+<p>First clone the repository, then edit as you wish, it’s quite
+simple.</p>
+<p>To edit documentation ReadComp has created a custom <a
+href="https://pandoc.org/">Pandoc</a> template, to compile the
+documentation page using Pandoc run the following commands:<br />
+<em>From root directory</em><br />
+<code>cd ./pages</code><br />
+<code>pandoc ../README.md -o read-more.html --template=pandoc-template.html</code></p></body></html>
