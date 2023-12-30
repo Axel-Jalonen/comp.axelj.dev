@@ -1,0 +1,24 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "A human readable compression algorithm running realtime locally behind a pretty user interface",
+  "main": "./javascript/index.js",
+  "scripts": {
+    "compilePages": "pandoc README.md -o ./pages/read-more.html --template=./pages/pandoc-template.html",
+    "createDist": "mkdir dist",
+    "createJS": "mkdir dist/javascript",
+    "createPages": "mkdir dist/pages",
+    "minifyJS": "esbuild ./javascript/index.js --bundle --minify --outfile=./dist/javascript/index.js",
+    "cpyStyles": "cp -r ./styles ./dist/",
+    "cpyHtml": "cp ./index.html ./dist/",
+    "cpyAssets": "cp -r ./assets ./dist/",
+    "cpyPages": "cp ./pages/read-more.html ./dist/pages/",
+    "build": "npm run compilePages && npm run createDist && npm run createJS && npm run createPages && npm run minifyJS && npm run cpyStyles && npm run cpyHtml && npm run cpyAssets && npm run cpyPages"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "^0.19.11"
+  }
+}
