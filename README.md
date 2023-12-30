@@ -47,6 +47,10 @@ In our algorithm, as mentioned in [Step 1](#step-1), we remove any characters we
 
 First clone the repository, then edit as you wish, it's quite simple.
 
+Run `compilePages` to create `read-more.html`
+
+_Note: This will also be run within `npm run build`_
+
 ### Building the Project
 
 run `npm i` to install necessary packages (ESBuild)
