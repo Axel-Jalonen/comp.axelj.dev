@@ -1,6 +1,5 @@
 const ui = {
     textareaInput: document.getElementById('textarea-input'),
-    occurrenceInput: document.getElementById('occurrence'),
     occurrenceSpan: document.getElementById('occurrence-value'),
     wordLengthInput: document.getElementById('length'),
     wordLengthSpan: document.getElementById('length-value'),
