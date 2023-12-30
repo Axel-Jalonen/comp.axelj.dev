@@ -4,6 +4,7 @@ import ui from './domElements.mjs'
 const ase = ui.advancedSettingsError
 
 const originalRegex = /[^-a-z0-9. \n,?";():]/g
+const originalRegexHtml = "/[^-a-z0-9. \n,?\";():]/"
 var userRegex = originalRegex
 
 function handleNewRegex() {
@@ -23,7 +24,7 @@ function handleNewRegex() {
 
 function resetRegex() {
     userRegex = originalRegex
-    ui.regexInput.value = ''
+    ui.regexInput.value = originalRegexHtml
     ase.innerHTML = 'Regex is reset, ready to run'
 }
 
