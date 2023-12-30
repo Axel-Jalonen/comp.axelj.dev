@@ -87,9 +87,10 @@ document, removing them.</p>
 <h2 id="working-on-readcomp">Working on ReadComp</h2>
 <p>First clone the repository, then edit as you wish, it’s quite
 simple.</p>
-<p>To edit documentation ReadComp has created a custom <a
-href="https://pandoc.org/">Pandoc</a> template, to compile the
-documentation page using Pandoc run the following commands:<br />
-<em>From root directory</em><br />
-<code>cd ./pages</code><br />
-<code>pandoc ../README.md -o read-more.html --template=pandoc-template.html</code></p></body></html>
+<h3 id="building-the-project">Building the Project</h3>
+<p><code>npm run build</code></p>
+<p>This will create a new folder called <code>dist</code>, It will
+compile the documentation page with Pandoc, It will bundle and minify
+the JS, It will copy assets, css &amp; html into <code>dist</code>.</p>
+<p><code>dist</code> now contains a production ready
+site.</p></body></html>

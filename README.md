@@ -47,7 +47,15 @@ In our algorithm, as mentioned in [Step 1](#step-1), we remove any characters we
 
 First clone the repository, then edit as you wish, it's quite simple.
 
-To edit documentation ReadComp has created a custom [Pandoc](https://pandoc.org/) template, to compile the documentation page using Pandoc run the following commands:\
-_From root directory_\
-`cd ./pages`\
-`pandoc ../README.md -o read-more.html --template=pandoc-template.html`
+### Building the Project
+
+run `npm i` to install necessary packages (ESBuild)
+
+run `npm run build` to create a production ready site:
+
+It will create a new folder called `dist`,
+It will compile the documentation page with Pandoc,
+It will bundle and minify the JS, 
+It will copy assets, css & html into `dist`.
+
+`dist` now contains a production ready site.
