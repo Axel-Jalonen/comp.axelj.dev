@@ -12,12 +12,10 @@
     #arrow-svg {
         display: none;
     }
-
-    #about-container {
+    .modal {
         width: 70%;
         top: 25%;
     }
-
     #input-container {
         width: 90%;
         justify-content: space-between;
