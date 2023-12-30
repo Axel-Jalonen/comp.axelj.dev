@@ -1,59 +1,17 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ReadComp</title></head><style>body{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif;max-width:750px;margin:auto;padding:20px;text-align:justify}code{font-family:monospace;padding:2px;border:1px solid #708090;border-radius:5px}</style><body><div id="markdown-content">
-              <h1 id="readcomp">
-                ReadComp
-              </h1><p>A human readable compression algorithm running realtime locally behind a pretty user interface</p>
-
-              <h2 id="introduction">
-                Introduction
-              </h2><p>ReadComp originally came from a need for a study sheet in a university course, where one single sided a4 paper sheet was permitted, and was required to be hand-written. Since this course was mainly pure memorization, most of the course could be written down. However, manually choosing which words to abbreviate and when would prove to be a pointless task, resulting in few savings (Humans can&#39;t see into the future of what will be written), so thus the solution is to pre-write and then compress. I figured that if we are pre-writing we might as well automate the compression. Thus ReadComp was born. Unlike some other human readable compression algorithms such as <a href="https://www.gsp.com/cgi-bin/man.cgi?section=1&topic=humanzip">Humanzip</a>, which focus on readability, without too much file size reduction, ReadComp aims to strike a balance between readability and compression. And since how &quot;readable&quot; something is is a subjective matter the user has complete control over the compression settings, including the frequency of compression, the length of the abbreviation, and the requirements of a word to be compressed.</p>
-
-              <h3 id="privacy">
-                Privacy
-              </h3><p>As someone who cares deeply about online privacy an application dealing with anything written by me must protect the data extremely well. This is the reason that ReadComp runs entirely from the browsers and is build without any web frameworks, only vanilla HTML, CSS &amp; JS. ReadComp doesn&#39;t store any text locally, nor does it ever make any network connections outside of the downloading of the page&#39;s source files to your browser. This also has the side effect of allowing ReadComp to run entirely offline should your browser have cached the page.</p>
-
-              <h2 id="the-algorithm">
-                The Algorithm
-              </h2>
-              <h3 id="overview">
-                Overview
-              </h3><p>Our algorithm analysis the text you submit and applies compression via abbreviation according to your chosen settings. ReadComp aims to introduce progressively smarter compression as development continues. </p>
-
-              <h3 id="step-1">
-                Step 1
-              </h3><p>The first thing that ReadComp does with your text is remove any apostrophes <code>&#39;</code>, capital letters, or other characters that are not directly required in the grammar. For the purpose of retaining grammatical sense ReadComp allows common punctuation, including question marks <code>?</code>, commas <code>,</code>, etc. ReadComp does not retain special characters that some text editors may generate such as special quotation marks.</p>
-
-              <h3 id="step-2">
-                Step 2
-              </h3><p>ReadComp now splits your text into an array via spaces, then it makes a new <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set"><code>set</code></a> from that array.</p>
-
-              <h3 id="step-3">
-                Step 3
-              </h3><p>Now we will count the occurrence of each word into a new object of words and their count.</p>
-
-              <h3 id="step-4">
-                Step 4
-              </h3><p>Using the object containing words and their count we will now now check each word against the users&#39;s specified conditions, adding the word to a <code>set</code> called <code>wordsToEdit</code>, and adding it&#39;s abbreviation to a <code>set</code> <code>abrWords</code>. We add it&#39;s abbreviation <code>set</code> so we can easily avoid cases such as <code>runnable</code> being shortened to <code>run</code> while <code>run</code> as a word is already used in the document.</p>
-
-              <h3 id="step-5">
-                Step 5
-              </h3><p>Now we can go through the text and replace each word in <code>wordsToEdit</code> in the text with it&#39;s abbreviation.</p>
-
-              <h2 id="advanced-features">
-                Advanced Features
-              </h2>
-              <h3 id="custom-regex">
-                Custom Regex
-              </h3><p>In our algorithm, as mentioned in <a href="#step-1">Step 1</a>, we remove any characters we don&#39;t think matter to most grammatical cases; however we know this is subjective, and won&#39;t fit everyone&#39;s use case. And while we strive for the best default possible, it is true that we won&#39;t always get it right, and our way of fixing that is letting the user control their settings. That is why we have provided the <code>Custom Regex</code> input. Our algorithm is designed to use regex in a way where matching characters etc., are replaced by an empty string <code>&#39;&#39;</code> basically a null value. The way we do this is to use a negative of what we desire, that is to say we provide a set of characters. Then we check if any character in the set fails to match our given set, removing it should it not. So if you which to <em>include</em> certain characters as allowed, then you must put a selected as follows: <code>[^a]</code>, this example would allow only the lower case <code>a</code>. By default our algorithm converts your entire document to lower case, we are working on making this an optional feature. If a regex such as <code>foo</code> is supplied the regex will match only for occurrences of the exact word <code>foo</code> in your document, removing them.</p>
-
-              <h2 id="working-on-readcomp">
-                Working on ReadComp
-              </h2><p>First clone the repository, then edit as you wish, it&#39;s quite simple.</p>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ReadComp</title></head><style>body{font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif;max-width:750px;margin:auto;padding:20px;text-align:justify}code{font-family:monospace;padding:2px;border:1px solid #708090;border-radius:5px}</style><body><div id="markdown-content"><h1 id="readcomp">ReadComp</h1><p>A human readable compression algorithm running realtime locally behind a pretty user interface</p>
+<h2 id="introduction">Introduction</h2><p>ReadComp originally came from a need for a study sheet in a university course, where one single sided a4 paper sheet was permitted, and was required to be hand-written. Since this course was mainly pure memorization, most of the course could be written down. However, manually choosing which words to abbreviate and when would prove to be a pointless task, resulting in few savings (Humans can&#39;t see into the future of what will be written), so thus the solution is to pre-write and then compress. I figured that if we are pre-writing we might as well automate the compression. Thus ReadComp was born. Unlike some other human readable compression algorithms such as <a href="https://www.gsp.com/cgi-bin/man.cgi?section=1&topic=humanzip">Humanzip</a>, which focus on readability, without too much file size reduction, ReadComp aims to strike a balance between readability and compression. And since how &quot;readable&quot; something is is a subjective matter the user has complete control over the compression settings, including the frequency of compression, the length of the abbreviation, and the requirements of a word to be compressed.</p>
+<h3 id="privacy">Privacy</h3><p>As someone who cares deeply about online privacy an application dealing with anything written by me must protect the data extremely well. This is the reason that ReadComp runs entirely from the browsers and is build without any web frameworks, only vanilla HTML, CSS &amp; JS. ReadComp doesn&#39;t store any text locally, nor does it ever make any network connections outside of the downloading of the page&#39;s source files to your browser. This also has the side effect of allowing ReadComp to run entirely offline should your browser have cached the page.</p>
+<h2 id="the-algorithm">The Algorithm</h2><h3 id="overview">Overview</h3><p>Our algorithm analysis the text you submit and applies compression via abbreviation according to your chosen settings. ReadComp aims to introduce progressively smarter compression as development continues. </p>
+<h3 id="step-1">Step 1</h3><p>The first thing that ReadComp does with your text is remove any apostrophes <code>&#39;</code>, capital letters, or other characters that are not directly required in the grammar. For the purpose of retaining grammatical sense ReadComp allows common punctuation, including question marks <code>?</code>, commas <code>,</code>, etc. ReadComp does not retain special characters that some text editors may generate such as special quotation marks.</p>
+<h3 id="step-2">Step 2</h3><p>ReadComp now splits your text into an array via spaces, then it makes a new <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set"><code>set</code></a> from that array.</p>
+<h3 id="step-3">Step 3</h3><p>Now we will count the occurrence of each word into a new object of words and their count.</p>
+<h3 id="step-4">Step 4</h3><p>Using the object containing words and their count we will now now check each word against the users&#39;s specified conditions, adding the word to a <code>set</code> called <code>wordsToEdit</code>, and adding it&#39;s abbreviation to a <code>set</code> <code>abrWords</code>. We add it&#39;s abbreviation <code>set</code> so we can easily avoid cases such as <code>runnable</code> being shortened to <code>run</code> while <code>run</code> as a word is already used in the document.</p>
+<h3 id="step-5">Step 5</h3><p>Now we can go through the text and replace each word in <code>wordsToEdit</code> in the text with it&#39;s abbreviation.</p>
+<h2 id="advanced-features">Advanced Features</h2><h3 id="custom-regex">Custom Regex</h3><p>In our algorithm, as mentioned in <a href="#step-1">Step 1</a>, we remove any characters we don&#39;t think matter to most grammatical cases; however we know this is subjective, and won&#39;t fit everyone&#39;s use case. And while we strive for the best default possible, it is true that we won&#39;t always get it right, and our way of fixing that is letting the user control their settings. That is why we have provided the <code>Custom Regex</code> input. Our algorithm is designed to use regex in a way where matching characters etc., are replaced by an empty string <code>&#39;&#39;</code> basically a null value. The way we do this is to use a negative of what we desire, that is to say we provide a set of characters. Then we check if any character in the set fails to match our given set, removing it should it not. So if you which to <em>include</em> certain characters as allowed, then you must put a selected as follows: <code>[^a]</code>, this example would allow only the lower case <code>a</code>. By default our algorithm converts your entire document to lower case, we are working on making this an optional feature. If a regex such as <code>foo</code> is supplied the regex will match only for occurrences of the exact word <code>foo</code> in your document, removing them.</p>
+<h2 id="working-on-readcomp">Working on ReadComp</h2><p>First clone the repository, then edit as you wish, it&#39;s quite simple.</p>
 <p>Run <code>compilePages</code> to create <code>read-more.html</code></p>
 <p><em>Note: This will also be run within <code>npm run build</code></em></p>
-
-              <h3 id="building-the-project">
-                Building the Project
-              </h3><p>run <code>npm i</code> to install necessary packages (ESBuild)</p>
+<h3 id="building-the-project">Building the Project</h3><p>run <code>npm i</code> to install necessary packages (ESBuild)</p>
 <p>run <code>npm run build</code> to create a production ready site:</p>
 <p>It will create a new folder called <code>dist</code>,
 It will compile the documentation page with Pandoc,

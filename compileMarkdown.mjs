@@ -1,16 +1,11 @@
 import { marked } from 'marked';
 import { readFileSync, writeFileSync } from 'fs';
 const renderer = {
-    heading(text, level) {
-      const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
-  
-      return `
-              <h${level} id="${escapedText}">
-                ${text}
-              </h${level}>`;
-    }
-  };
-  
+  heading(text, level) {
+    const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
+    return `<h${level} id="${escapedText}">${text}</h${level}>`;
+  }
+};
 marked.use({ renderer });
 const template = readFileSync('./pages/template.html', 'utf8');
 const markdown = readFileSync('README.md', 'utf8');
