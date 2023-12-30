@@ -27,7 +27,7 @@ function handleAbbreviationLengthInput() {
     try {
         ui.wordLengthInput.min = parseInt(ui.abbreviationLengthInput.value) + 1;
         ui.wordLengthInput.dispatchEvent(inputChangeEvent);
-        if (wordLengthInput.value < ui.wordLengthInput.min) {
+        if (ui.wordLengthInput.value < ui.wordLengthInput.min) {
             ui.wordLengthInput.value = ui.wordLengthInput.min;
             ui.wordLengthSpan.innerHTML = ui.wordLengthInput.value;
         };
